@@ -1,0 +1,28 @@
+{
+  "type": "module",
+  "name": "zkyc-lfg",
+  "version": "2.13.2",
+  "description": "A small SDK to redirect id parameter.",
+  "main": "dist/shuftites-redirect-sdk.umd.js",
+  "module": "dist/shuftites-redirect-sdk.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "prepare": "npm run build"
+  },
+  "sideEffects": false,
+  "author": "LFG",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@rollup/plugin-babel": "^6.0.0",
+    "@rollup/plugin-node-resolve": "^15.0.0",
+    "@rollup/plugin-terser": "^0.3.0",
+    "rollup": "^3.0.0",
+    "rollup-plugin-dts": "^6.2.1"
+  }
+}
