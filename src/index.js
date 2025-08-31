@@ -11,7 +11,7 @@ function ZKYCProcess(id, Key, Services , failurePage, pendingPage) {
   }
 
   const url =
-    `https://z-kyc-sdk.vercel.app/?id=${encodeURIComponent(id)}` +
+    `https://z-kyc-sdk-mocha.vercel.app/?id=${encodeURIComponent(id)}` +
     (Services ? `&Services=${encodeURIComponent(Services)}` : "") +
     `&Key=${encodeURIComponent(Key)}`+
     `&failurePage=${encodeURIComponent(failurePage)}`+
