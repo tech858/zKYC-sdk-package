@@ -1,25 +1,27 @@
+import CryptoJS from "crypto-js";
+
 /**
- * @param {string} id - Unique user/session id
+ * Redirects user to ZKYC verification
  * @param {string} Key
- * @param {string|null} Services - Service name (e.g., "OCR") or null
- * @param {string} failurePage - URL to redirect on failure
+ * @param {string} failurePage
  * @param {string} pendingPage
  */
-function ZKYCProcess(id, Key, Services , failurePage, pendingPage) {
-  if (!id || !Key  || !failurePage|| !pendingPage) {
-    throw new Error("You must pass id,Key,failurePage and pendingPage");
+export function ZKYCProcess(Key, failurePage, pendingPage) {
+  if (!Key || !failurePage || !pendingPage) {
+    throw new Error("Key, failurePage and pendingPage are required");
   }
 
+  const SECRET = "test_2f89ab38659ab64a8715632d849d0b043b89793d7b6a7979";
+
+  const encryptedKey = CryptoJS.AES.encrypt(Key, SECRET).toString();
+
   const url =
-    `https://z-kyc-sdk-mocha.vercel.app/?id=${encodeURIComponent(id)}` +
-    (Services ? `&Services=${encodeURIComponent(Services)}` : "") +
-    `&Key=${encodeURIComponent(Key)}`+
-    `&failurePage=${encodeURIComponent(failurePage)}`+
-    `&pending=${encodeURIComponent(pendingPage)}`
-    ;
+    "https://sdk.zkyc.tech/?" +
+    "Key=" + encodeURIComponent(encryptedKey) +
+    "&failurePage=" + encodeURIComponent(failurePage) +
+    "&pending=" + encodeURIComponent(pendingPage);
 
   window.location.assign(url);
 }
 
-export { ZKYCProcess };           // ✅ named export
-export default { ZKYCProcess }; 
+export default ZKYCProcess;
