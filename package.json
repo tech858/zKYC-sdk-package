@@ -1,12 +1,14 @@
 {
-  "name": "zkyc-sdk-ryad",
+  "name": "zkyc-sdk-package",
   "version": "1.1.0",
   "description": "Browser SDK to redirect users to ZKYC verification",
   "main": "src/index.js",
   "type": "module",
   "keywords": [
     "zkyc",
-    "ryad"
+    "kyc",
+    "identity",
+    "sdk"
   ],
   "author": "ZKYC",
   "license": "MIT",

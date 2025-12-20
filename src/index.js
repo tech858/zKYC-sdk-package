@@ -28,7 +28,7 @@ async function ZKYCProcess(config) {
 
   // Default to production platform API URL if not provided
   // Users should set this to their platform URL (e.g., https://api.zkyc.tech)
-  const platformUrl = "https://api.zkyc.tech";
+  const platformUrl = "https://app.zkyc.tech";
   const tokenEndpoint = `${platformUrl}/api/sdk-token`;
 
   try {
