@@ -12,18 +12,18 @@
  * @param {Object} config - Configuration object containing API key and redirect URLs
  * @param {string} config.apiKey - Your zKYC API key (with test_ or prod_ prefix)
  * @param {string} config.failurePage - URL to redirect if KYC verification fails
- * @param {string} config.pendingPage - URL to redirect if KYC is pending
+ * @param {string} config.successPage - URL to redirect if KYC is pending
  * @param {string} [config.platformApiUrl] - Optional: Your platform API URL (defaults to production)
  * @returns {Promise<void>}
  * @throws {Error} if API key, failurePage, or pendingPage is missing
  * @throws {Error} if token generation fails
  */
 async function ZKYCProcess(config) {
-  const { apiKey, failurePage, pendingPage } = config;
+  const { apiKey, failurePage, successPage } = config;
 
   // Validate required parameters
-  if (!apiKey || !failurePage || !pendingPage) {
-    throw new Error("apiKey, failurePage, and pendingPage are required");
+  if (!apiKey || !failurePage || !successPage) {
+    throw new Error("apiKey, failurePage, and successPage are required");
   }
 
   // Default to production platform API URL if not provided
@@ -56,7 +56,7 @@ async function ZKYCProcess(config) {
     const sdkUrl = new URL("https://sdk.zkyc.tech/");
     sdkUrl.searchParams.set("apikey", token); // SDK will detect it's a token
     sdkUrl.searchParams.set("failurePage", failurePage);
-    sdkUrl.searchParams.set("pending", pendingPage);
+    sdkUrl.searchParams.set("pending", successPage);
 
     // Redirect to SDK
     if (typeof window !== "undefined") {
