@@ -54,9 +54,9 @@ async function ZKYCProcess(config) {
 
     // Build SDK URL with token
     const sdkUrl = new URL("https://sdk.zkyc.tech/");
-    sdkUrl.searchParams.set("apikey", token); // SDK will detect it's a token
-    sdkUrl.searchParams.set("failurePage", failurePage);
-    sdkUrl.searchParams.set("pending", successPage);
+    sdkUrl.searchParams.set("apiKey", token); // SDK will detect it's a token
+    sdkUrl.searchParams.set("failureUrl", failurePage);
+    sdkUrl.searchParams.set("successUrl", successPage);
 
     // Redirect to SDK
     if (typeof window !== "undefined") {
