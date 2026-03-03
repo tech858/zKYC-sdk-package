@@ -28,8 +28,8 @@ async function ZKYCProcess(config) {
 
   // Default to production platform API URL if not provided
   // Users should set this to their platform URL (e.g., https://api.zkyc.tech)
-  const platformUrl = "https://app.zkyc.tech";
-  const tokenEndpoint = `${platformUrl}/api/sdk-token`;
+  const platformUrl = "https://api.zkyc.tech";
+    const tokenEndpoint = `${platformUrl}/api/kyc/generate-token`;
 
   try {
     // Generate token from API key (server-side call)
@@ -46,8 +46,13 @@ async function ZKYCProcess(config) {
       throw new Error(`Token generation failed: ${errorData.error || response.statusText}`);
     }
 
-    const { token, expiresIn, expiresAt } = await response.json();
+const result = await response.json();
 
+if (!result.success) {
+  throw new Error("Token generation failed");
+}
+
+const { token, expiresIn, expiresAt } = result.data;
     if (!token) {
       throw new Error("Token generation failed: No token received");
     }
